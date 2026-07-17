@@ -2,11 +2,13 @@
 
 from blog import create_blog
 from blog import print_blogs
+from blog import is_user
+from blog import add_blog
 
 
 posting_active = True;
 
-blogs = []
+blog_accounts = []
 
 print("\nWelcome to Blogs of The Week! Share your thoughts!")
 
@@ -25,17 +27,21 @@ while posting_active:
         title = input("Title of your blog: ")
         text = input("Please enter text for your blog: ")
 
-        create_blog(blogs, name, title, text)
+        if is_user(blog_accounts, name):
+            add_blog(blog_accounts, name, title, text)
+        else:
+            create_blog(blog_accounts, name, title, text)
 
 print("\n----Blogs of The Week---")
 
-if len(blogs) == 0:
+if len(blog_accounts) == 0:
     print("\nSorry! There are currently no blogs available!")
 else:
-    print_blogs(blogs)
+    print_blogs(blog_accounts)
         
-
 print("\nThank you for using this app! =)\n")
+
+print(blog_accounts)
     
 
     
