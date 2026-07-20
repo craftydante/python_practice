@@ -1,35 +1,35 @@
 # This program builds on top of the previous blogging example
 
+from account import Account
 posting_active = True;
 
-blogs = []
+accounts = []
 
-print("\nWelcome to Blogs of The Week! Share your thoughts!")
+print("\nWelcome to BlogMe! Share your thoughts!")
 
 while posting_active:
     
-    answer = input("\nWould you like to post a blog today? 'yes' or 'no' ")
+    answer = input("\nWhat would you like to do? (S)Sign Up, (L)Login, or (Q)Quit ?: ")
     
-    if answer == 'no':
+    if answer == 'q' or answer == 'Q':
         posting_active = False
+    elif answer == 'l' or answer == 'L':
+        print("logging in user!")
+        break
     else:
-        name = input("Please enter your name: ")
-        title = input("Title of your blog: ")
-        text = input("Please enter text for your blog: ")
+        username = input("Please enter a username: ")
+        password = input("Please enter a password: ")
+        email = input("Please enter a valid email: ")
+        
+        accounts.append(Account(username=username, email=email, password=password))
+    break
+print(accounts)
 
-        blogs.append({'user' : name, 'title' : title, 'body': text})
-
-print("\n----Blogs of The Week---")
-
-if len(blogs) == 0:
-    print("\nSorry! There are currently no blogs available!")
-else:
-    for post in blogs:
-        print("--------")
-        print(f"\n{post['title'].title()} by {post['user'].title()}")
-        print(f"\n{post['body']}\n")
 
 print("\nThank you for using this app! =)\n")
     
 
-    
+# Goals:
+# Figure out how to login a user 
+# Figure out how to select the current instane of an object in a list
+# Figure out how to search through different objects 
