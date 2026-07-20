@@ -5,3 +5,4 @@ class Account:
         self.password = password
         self.email = email
         self.blogs = []
+

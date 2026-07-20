@@ -1,38 +1,35 @@
-# This program is continuation of the blogging example from before
+# This program builds on top of the previous blogging example
 
-from app_functions import login
-from app_functions import logout
-from app_functions import add_user
-from account import Account
+posting_active = True;
 
-logged_in = login()
-exit_message = "Thanks for stopping by! =)"
-success_message = "Thank you! Account has been successfully created"
+blogs = []
 
-accounts = []
+print("\nWelcome to Blogs of The Week! Share your thoughts!")
 
-response = input("Do you have an account: 'y' or 'n': ")
-
-if response == "n":
-    decision = input("Would you like to sign up? 'y' or 'n': ")
-    if decision == "n":
-        print(exit_message)
-    else:
-        username = input("Please create a username: ")
-        password = input("Please create a password: ")
-        email = input("Please provide a vailid email: ")
-
-        add_user(accounts, Account(username, password, email))
-
-        if accounts:
-            logged_in = login()
-            print(success_message)
-
-while logged_in:
-    choice = input(f"Welcome {accounts[0].username}! What would you like to post a blog? ")
+while posting_active:
     
-    if choice == 'y':
-        # create a new blog and attach to the account
-        print("This is me creating a blog")
+    answer = input("\nWould you like to post a blog today? 'yes' or 'no' ")
+    
+    if answer == 'no':
+        posting_active = False
     else:
-        logged_in = logout()
+        name = input("Please enter your name: ")
+        title = input("Title of your blog: ")
+        text = input("Please enter text for your blog: ")
+
+        blogs.append({'user' : name, 'title' : title, 'body': text})
+
+print("\n----Blogs of The Week---")
+
+if len(blogs) == 0:
+    print("\nSorry! There are currently no blogs available!")
+else:
+    for post in blogs:
+        print("--------")
+        print(f"\n{post['title'].title()} by {post['user'].title()}")
+        print(f"\n{post['body']}\n")
+
+print("\nThank you for using this app! =)\n")
+    
+
+    
